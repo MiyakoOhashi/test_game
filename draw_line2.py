@@ -1,30 +1,33 @@
-"""game.jp"""
+"""draw_line2.jp"""
 import sys
 import pygame
 from pygame.locals import QUIT
 
 pygame.init()
 SURFACE = pygame.display.set_mode((400, 300))
-pygame.display.set_caption("Just Window")
+pygame.display.set_caption("Drew Line2")
 FPSCLOCK = pygame.time.Clock()
 
 def main():
     """ main routine """
-    sysfont = pygame.font.SysFont(None, 36)
-    counter = 0
-
     while True:
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
 
-        counter += 1
         SURFACE.fill((0, 0, 0))
-        count_image = sysfont.render("count is {}".format(counter), True, (255, 255, 255))
-        SURFACE.blit(count_image, (50, 50))
+
+        #白、横線
+        for xpos in range(0, 400, 25):
+            pygame.draw.line(SURFACE, 0xFFFFFF, (xpos, 0), (xpos, 300))
+
+        # 白、横線
+        for ypos in range(0, 300, 25):
+            pygame.draw.line(SURFACE, 0xFFFFFF, (0, ypos), (400, ypos))
+
         pygame.display.update()
-        FPSCLOCK.tick(10)
+        FPSCLOCK.tick(3)
 
 if __name__ == '__main__':
     main()
